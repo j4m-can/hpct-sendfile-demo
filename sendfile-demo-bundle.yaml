@@ -1,0 +1,25 @@
+name: sendfile-demo
+
+description: |
+  Sendfile demo with server and client.
+
+series: jammy
+
+applications:
+  sendfile-client:
+    charm: ./charms/hpct-sendfile-client-operator_ubuntu-22.04-amd64.charm
+    series: jammy
+    num_units: 1
+      #to: 4
+
+  sendfile-server:
+    charm: ./charms/hpct-sendfile-server-operator_ubuntu-22.04-amd64.charm
+    series: jammy
+    num_units: 1
+      #to: 1
+
+relations:
+- - sendfile-server:sendfile
+  - sendfile-client:sendfile
+
+
